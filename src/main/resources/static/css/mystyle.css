@@ -1,0 +1,23 @@
+.formdiv {
+    margin-top: 200px;
+    margin-left: 240px;
+    width: 600px;
+    height: 250px;
+}
+
+.formdiv form input {
+    width: 250px;
+    border: 0px solid gray;
+    height: 30px;
+}
+
+.mdb-select {
+
+    width: 150px;
+    border: unset;
+}
+
+.innerImg{
+    width: 500px;
+    height: 400px;
+}

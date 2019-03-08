@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Magnetic - Stunning Responsive HTML5/CSS3 Photography Template</title>
+    <meta charset="utf-8">
+    <meta name="author" content="pixelhint.com">
+    <meta name="description" content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website  template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+    <script type="text/javascript" th:src="@{/js/map.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a th:href="@{/}"><img th:src="@{/img/logo.png}" title="Magnetic" alt="Magnetic"/></a>
+    </div>
+
+    <div id="menu_icon"></div>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/add/post}" class="selected">Add Post</a></li>
+            <li><a th:href="@{/add/category}">Add Category</a></li>
+        </ul>
+    </nav><!-- end navigation menu -->
+
+    <div class="footer clearfix">
+        <div class="rights">
+            <p>Copyright © 2014 magnetic.</p>
+            <p>Template by <a href="">Pixelhint.com</a></p>
+        </div><!-- end rights -->
+    </div ><!-- end footer -->
+</header><!-- end header -->
+
+<section class="main clearfix">
+
+    <div class="formdiv">
+        <form action="/post/add" method="post" enctype="multipart/form-data" >
+            <input type="text" name="title" placeholder="Title"> <br> <br>
+            <input type="text" name="text" placeholder="Text"> <br> <br>
+            <input type="file" name="picture"><br>
+            <select  class="mdb-select md-form" name="category.id">
+                <option th:each="c : ${allCategory}" th:value="${c.id}" th:text="${c.name}"></option>
+            </select></li> <br>
+            <br>
+            <input type="submit" value="Add Post">
+
+        </form>
+
+    </div>
+</section><!-- end main -->
+
+</body>
+</html>
