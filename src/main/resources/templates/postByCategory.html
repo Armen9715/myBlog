@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
-    <title>My Blog</title>
+    <title>Post</title>
     <meta charset="utf-8">
     <meta name="author" content="pixelhint.com">
-    <meta name="description"
-          content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website template"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="description" content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website  template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 </head>
 <body>
+
 <header>
     <div class="logo">
         <a th:href="@{/}"><img th:src="@{/img/logo.png}" title="Magnetic" alt="Magnetic"/></a>
     </div>
 
+    <div id="menu_icon"></div>
     <nav>
         <ul>
             <li><a th:href="@{/post/add}">Add Post</a></li>
@@ -31,16 +27,14 @@
             <li> <h3 style="color: black">Category</h3></li>
             <li>  <a th:href="@{/}"> All Posts </a></li>
             <li th:each="c : ${allCategory}" th:value="${c.id}" >
-                    <a  th:href="@{post/by/category(id=${c.id})}" th:text="${c.name}">  </a>
+                <a  th:href="@{category(id=${c.id})}" th:text="${c.name}">  </a>
             </li> <br>
         </ul>
     </nav>
-
-</header><!-- end header -->
-
+</header>
 <section class="main clearfix">
 
-    <div class="work" th:each="p : ${allPosts}">
+    <div class="work" th:each="p : ${allPosts}" th:if="${categoryID==p.category.id}">
         <a th:href="@{/post/inner(id=${p.id})}">
             <img  style="height: 277px" th:src="@{/post/getImage(picUrl=${p.picUrl})}" class="media" alt=""/>
 

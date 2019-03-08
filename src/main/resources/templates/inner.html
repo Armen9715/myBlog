@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Magnetic - Stunning Responsive HTML5/CSS3 Photography Template</title>
+	<title>Blog</title>
 	<meta charset="utf-8">
 	<meta name="author" content="pixelhint.com">
 	<meta name="description" content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website  template"/>
@@ -10,9 +10,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/mainn.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
 	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-	<script type="text/javascript" th:src="@{/js/map.js}"></script>
-	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+
 
 </head>
 <body>
@@ -20,66 +18,38 @@
 	<header>
 		<div class="logo">
 			<a th:href="@{/}"><img th:src="@{/img/logo.png}" title="Magnetic" alt="Magnetic"/></a>
-		</div><!-- end logo -->
+		</div>
 
-		<div id="menu_icon"></div>
 		<nav>
 			<ul>
-				<li><a th:href="@{/}">Home</a></li>
 				<li><a th:href="@{/post/add}" >Add Post</a></li>
 				<li><a th:href="@{/category/add}" class="selected">Add Category</a></li>
 			</ul>
-		</nav><!-- end navigation menu -->
-
-		<div class="footer clearfix">
-			<ul class="social clearfix">
-				<li><a href="#" class="fb" data-title="Facebook"></a></li>
-				<li><a href="#" class="google" data-title="Google +"></a></li>
-				<li><a href="#" class="behance" data-title="Behance"></a></li>
-				<!--<li><a href="#" class="twitter" data-title="Twitter"></a></li>
-				<li><a href="#" class="dribble" data-title="Dribble"></a></li>-->
-				<li><a href="#" class="rss" data-title="RSS"></a></li>
-			</ul><!-- end social -->
-
-			<div class="rights">
-				<p>Copyright © 2014 magnetic.</p>
-				<p>Template by <a href="">Pixelhint.com</a></p>
-			</div><!-- end rights -->
-		</div ><!-- end footer -->
-	</header><!-- end header -->
+		</nav>
+	</header>
 
 	<section class="main clearfix">
-
 		<section class="top">
 			<div class="wrapper content_header clearfix">
-				<div class="work_nav">
-							
-					<ul class="btn clearfix">
-						<li><a href="#" class="previous" data-title="Previous"></a></li>
-						<li><a href="index.html" class="grid" data-title="Portfolio"></a></li>
-						<li><a href="#" class="next" data-title="Next"></a></li>
-					</ul>							
-					
-				</div><!-- end work_nav -->
 				<h1 th:text="${singlePost.title}" class="title"></h1>
+
+				<hr>
 			</div>
 		</section>
 
-<!-- end top -->
 
 		<section class="wrapper">
 			<div class="content">
 				<div style="display:flex">
 					<img class="innerImg" th:src="@{/post/getImage(picUrl=${singlePost.picUrl})}" alt="">
 					<p style="margin-left: 20px;width: 350px;" th:text="${singlePost.text}"></p>
-
 				</div>
+				<h3 style="display: inline-block">Category` </h3> <p style="display:inline-block; color: #cccccc" th:text="${singlePost.category.name}"></p>
 
 
 
-			</div><!-- end content -->
+			</div>
 		</section>
-	</section><!-- end main -->
-	
+	</section>
 </body>
 </html>

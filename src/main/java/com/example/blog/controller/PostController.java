@@ -65,5 +65,13 @@ public class PostController {
         return "inner";
     }
 
+    @GetMapping("/post/by/category")
+    public  String  postByCategory(ModelMap map,@RequestParam("id") int id) {
+        map.addAttribute("allCategory", categoryRepository.findAll());
+        map.addAttribute("allPosts", postRepository.findAll());
+        map.addAttribute("categoryID",id);
+        return "postByCategory";
+    }
+
 
 }
