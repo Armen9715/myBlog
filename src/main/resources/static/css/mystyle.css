@@ -21,3 +21,14 @@
     width: 500px;
     height: 400px;
 }
+
+.main .work {
+    margin-left: 13px;
+    display: block;
+    width: 31.333333%;
+    height: auto;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px;
+}
