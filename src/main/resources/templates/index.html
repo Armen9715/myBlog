@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/mainn.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
@@ -28,11 +28,14 @@
             <li><a th:href="@{/post/add}">Add Post</a></li>
             <li><a th:href="@{/category/add}">Add Category</a></li>
             <br>
-            <li> <h3 style="color: black">Category</h3></li>
-            <li>  <a th:href="@{/}"> All Posts </a></li>
-            <li th:each="c : ${allCategory}" th:value="${c.id}" >
-                    <a  th:href="@{post/by/category(id=${c.id})}" th:text="${c.name}">  </a>
-            </li> <br>
+            <li><h3 style="color: black">Category</h3></li>
+            <div class="categoryScroll">
+                <li><a th:href="@{/}"> All Posts </a></li>
+                <li th:each="c : ${allCategory}" th:value="${c.id}">
+                    <a th:href="@{post/by/category(id=${c.id})}" th:text="${c.name}"> </a>
+                </li>
+                <br>
+            </div>
         </ul>
     </nav>
 
@@ -42,11 +45,12 @@
 
     <div class="work" th:each="p : ${allPosts}">
         <a th:href="@{/post/inner(id=${p.id})}">
-            <img  style="height: 277px" th:src="@{/post/getImage(picUrl=${p.picUrl})}" class="media" alt=""/>
+            <img style="height: 277px" th:src="@{/post/getImage(picUrl=${p.picUrl})}" class="media" alt=""/>
 
             <div class="caption">
                 <div class="work_title">
                     <h1 th:text="${p.title}"></h1>
+                    <h6>View More</h6>
 
                 </div>
             </div>

@@ -24,6 +24,7 @@
 			<ul>
 				<li><a th:href="@{/post/add}" >Add Post</a></li>
 				<li><a th:href="@{/category/add}" class="selected">Add Category</a></li>
+
 			</ul>
 		</nav>
 	</header>
@@ -31,7 +32,7 @@
 	<section class="main clearfix">
 		<section class="top">
 			<div class="wrapper content_header clearfix">
-				<h1 th:text="${singlePost.title}" class="title"></h1>
+				<h1 style="text-align: center" th:text="${singlePost.title}" class="title"></h1>
 
 				<hr>
 			</div>
@@ -41,11 +42,13 @@
 		<section class="wrapper">
 			<div class="content">
 				<div style="display:flex">
+                    <h3  class="innerDate" th:text="${singlePost.date}"></h3>
 					<img class="innerImg" th:src="@{/post/getImage(picUrl=${singlePost.picUrl})}" alt="">
 					<p style="margin-left: 20px;width: 350px;" th:text="${singlePost.text}"></p>
 				</div>
-				<h3 style="display: inline-block">Category` </h3> <p style="display:inline-block; color: #cccccc" th:text="${singlePost.category.name}"></p>
-
+				<h3 style="display: inline-block">Category` </h3> <p style="display:inline-block; color: #cccccc"  th:each="categoryList : ${singlePost.getCategories()}" th:text="${categoryList.name} +','"></p>
+				<br>
+				<a th:href="@{/post/delete(id=${singlePost.id})}"><input class="formDivInput" type="button" name="delete" value="Delete Post" ></a>
 
 
 			</div>

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,5 +23,8 @@ public class Category {
     @Column
     private String name;
 
+    @ManyToMany(mappedBy = "categories")
+    @Transient
+    List<Post> posts;
 }
 

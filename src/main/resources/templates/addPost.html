@@ -4,11 +4,13 @@
     <title>Add Post</title>
     <meta charset="utf-8">
     <meta name="author" content="pixelhint.com">
-    <meta name="description" content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website  template"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description"
+          content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website  template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainn.css}">
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/twocss.css}">
     <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 
 </head>
@@ -31,15 +33,27 @@
 <section class="main clearfix">
 
     <div class="formdiv">
-        <form action="/post/add" method="post" enctype="multipart/form-data" >
-            <input type="text" name="title" placeholder="Title"> <br> <br>
-            <input type="text" name="text" placeholder="Text"> <br> <br>
-            <input type="file" name="picture"><br>
-            <select  class="mdb-select md-form" name="category.id">
-                <option th:each="c : ${allCategory}" th:value="${c.id}" th:text="${c.name}"></option>
-            </select></li> <br>
+        <form action="/post/add" method="post" enctype="multipart/form-data">
+            <input class="formDivInput" type="text" name="title" placeholder="Title"> <br> <br>
+            <input class="formDivInput"type="text" name="text" placeholder="Text"> <br> <br>
+            <input class="formDivInput"type="file" name="picture"><br>
+            <table class="categoryTable" border="1">
+                <tr style="font-style: inherit">
+                    <td> Category Name</td>
+                    <td> Select Category</td>
+                </tr>
+
+                <tr th:each="category: ${allCategory}">
+                    <td th:text="${category.name}"></td>
+                    <td><input type="checkbox" th:value="${category.id}"  name="categories">
+                    </td>
+
+                </tr>
+            </table>
+            <!--<input type="checkbox" th:each="category: ${allCategory}" th:value="${category.id}"-->
+                   <!--th:text="${category.name}" name="categories">-->
             <br>
-            <input type="submit" value="Add Post">
+            <input class="formDivInput" type="submit" value="Add Post">
         </form>
     </div>
 </section>

@@ -7,7 +7,7 @@
     <meta name="description" content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website  template"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainn.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
     <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 </head>
@@ -25,16 +25,19 @@
             <li><a th:href="@{/category/add}">Add Category</a></li>
             <br>
             <li> <h3 style="color: black">Category</h3></li>
-            <li>  <a th:href="@{/}"> All Posts </a></li>
-            <li th:each="c : ${allCategory}" th:value="${c.id}" >
-                <a  th:href="@{category(id=${c.id})}" th:text="${c.name}">  </a>
-            </li> <br>
+            <div class="categoryScroll">
+                <li><a th:href="@{/}"> All Posts </a></li>
+                <li th:each="c : ${allCategory}" th:value="${c.id}">
+                    <a th:href="@{post/by/category(id=${c.id})}" th:text="${c.name}"> </a>
+                </li>
+                <br>
+            </div>
         </ul>
     </nav>
 </header>
 <section class="main clearfix">
 
-    <div class="work" th:each="p : ${allPosts}" th:if="${categoryID==p.category.id}">
+    <div class="work" th:each="p : ${postbyCategory}">
         <a th:href="@{/post/inner(id=${p.id})}">
             <img  style="height: 277px" th:src="@{/post/getImage(picUrl=${p.picUrl})}" class="media" alt=""/>
 

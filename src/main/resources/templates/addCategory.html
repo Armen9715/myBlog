@@ -8,8 +8,9 @@
           content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website  template"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mainn.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/twocss.css}">
     <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 </head>
 <body>
@@ -29,8 +30,8 @@
 <section class="main clearfix">
     <div class="formdiv">
         <form action="/category/add" method="post">
-            <input type="text" name="name" placeholder="Category Name">
-            <input type="submit" value="Add Category">
+            <input class="formDivInput" type="text" name="name" placeholder="Category Name">
+            <input  style="margin-left: 50px;" class="formDivInput" type="submit" value="Add Category">
         </form>
 
     </div>

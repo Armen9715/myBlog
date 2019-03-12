@@ -22,6 +22,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -45,8 +49,7 @@ public class PostController {
         File picture = new File(imageUploadDir + File.separator + fileName);
         file.transferTo(picture);
         post.setPicUrl(fileName);
-        System.out.println(post);
-
+        post.setDate(new Date());
         postRepository.save(post);
         return "redirect:/post/add";
     }
@@ -59,19 +62,41 @@ public class PostController {
     }
 
     @GetMapping("/post/inner")
-    public String  singlePost(ModelMap map,@RequestParam("id") int id){
-       Post post=postRepository.getOne(id);
-       map.addAttribute("singlePost", post);
+    public String singlePost(ModelMap map, @RequestParam("id") int id) {
+        Post post = postRepository.getOne(id);
+        map.addAttribute("singlePost", post);
         return "inner";
     }
 
     @GetMapping("/post/by/category")
-    public  String  postByCategory(ModelMap map,@RequestParam("id") int id) {
-        map.addAttribute("allCategory", categoryRepository.findAll());
-        map.addAttribute("allPosts", postRepository.findAll());
-        map.addAttribute("categoryID",id);
-        return "postByCategory";
+    public String postByCategory(ModelMap map, @RequestParam("id") int id) {
+        Category optionalCategory = categoryRepository.getOne(id);
+
+        List<Post> allpost = postRepository.findAll();
+        List<Post> postByCategory = new ArrayList<>();
+
+        for (Post post : allpost) {
+            for (Category postCategory : post.getCategories()) {
+                if (postCategory==optionalCategory ){
+                    postByCategory.add(post);
+                }
+
+            }
+
+        }
+        map.addAttribute("postbyCategory",postByCategory);
+        map.addAttribute("allCategory",categoryRepository.findAll());
+        return"postByCategory";
+
     }
 
+    @GetMapping("/post/delete")
+    public String deleteById(@RequestParam("id") int id) {
+        Optional<Post> one = postRepository.findById(id);
+        if (one.isPresent()) {
+            postRepository.deleteById(id);
+        }
+        return "redirect:/";
+    }
 
 }
